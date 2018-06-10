@@ -1,9 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar dark>
+    <ion-title>Open Orders</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="cards-bg custom-bg">
+
+  <ion-card class="adv-map" *ngFor="let order of orders | async; let i = index">
+    <div style="position: relative">
+      <img src={{status[order.status]}}  class="card-img">
+      <ion-fab right top>
+        <button ion-fab class="fab-map" color={{statusPin[order.status]}} *ngIf="order.status === 'R'">
+            <strong>{{availableDrivers}}</strong><ion-icon name="md-contacts"></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+    <ion-item>
+      <ion-icon color="subtle" large item-start name='md-log-in'></ion-icon>
+      <h2>{{order.pickup}}</h2>
+      <p>{{order.Paddress}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon color="subtle" large item-start name='md-log-out'></ion-icon>
+      <h2>{{order.drop}}</h2>
+      <p>{{order.Daddress}}</p>
+    </ion-item>
+    <ion-item actions>
+      <span ion-text item-start color="secondary" class="item-bold">{{order.duration}}</span>
+      <span ion-text item-start color="subtle">{{order.distance}}</span>
+      <button ion-button color="primary" clear item-end icon-start *ngIf="order.status === 'R'"  (click)="pushPage(order,carrierData,'R')">
+        <ion-icon name='logo-usd'></ion-icon>
+        <strong>Initiate Bid</strong>
+      </button>
+      <button ion-button color="primary" clear item-end icon-start *ngIf="order.status === 'S'" (click)="pushPage(order,carrierData,'S')">
+        <ion-icon name='md-list-box'></ion-icon>
+        <strong>View Transactions</strong>
+      </button>
+      <button ion-button color="primary" clear item-end icon-start *ngIf="order.status === 'T'" (click)="pushPage(order,carrierData,'T')">
+        <ion-icon name='md-information-circle'></ion-icon>
+        <strong>View Status</strong>
+      </button>
+    </ion-item>
   
+  </ion-card>
 </ion-content>

@@ -1,0 +1,51 @@
+<!--
+  Generated template for the StatusPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Order Status</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <ion-card class="bg-green" *ngFor="let statusData of status | async; let i = index">
+<div [ngClass]="{'bg-red' : (statusData.delay>=5)}"> 
+        <ion-card-header>
+          Order status
+        </ion-card-header>
+      
+        <ion-card-content>
+          <div>Time:{{statusData.value}}</div>
+          <div>Delay:{{statusData.delay}}</div>
+          <div class="align-right" *ngIf='status.delay>=5'>Delayed by 5 mins</div>
+        </ion-card-content>
+     </div>
+      </ion-card> -->
+  <ul class="timeline" *ngFor="let statusData of messages">
+
+    <!-- Item 1 -->
+    <li >
+
+      <div class="direction-r">
+        <div class="flag-wrapper">
+          <span class="flag white" [ngStyle]="{'background-color':statusData.delay == '0' ? 'green' : 'red' }">Message: {{statusData.carrierMess}}</span>
+        </div>
+        <span class="flag-2 white" [ngStyle]="{'background-color':statusData.delay == '0' ? 'green' : 'red' }">Delay: {{statusData.delay}}</span>
+        <p class="flag-2" *ngIf="statusData.alert.length > 2">Driver: {{statusData.alert}}</p>
+      </div>
+      <div class="direction-l">
+        <div class="flag-wrapper">
+          <span class="flag">Time: {{statusData.time}}</span>
+        </div>
+      </div>
+    </li>
+
+
+  </ul>
+</ion-content>
