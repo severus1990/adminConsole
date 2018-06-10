@@ -14,7 +14,20 @@
 
 
 <ion-content padding>
-  <button (click)="toggleVoiceRecognition()" ion-button secondary round>{{ started ? 'Stop' : 'Send Message to Driver' }}</button>
+    <ion-card>
+      <ion-card-header>
+        Order Info
+      </ion-card-header>
+      <ion-card-content>
+          <ion-list>
+              <ion-item>{{ordersInfo.pickup}}</ion-item>
+              <ion-item>{{ordersInfo.drop}}</ion-item>
+              <ion-item>{{ordersInfo.load}}</ion-item>
+            </ion-list>
+            <button (click)="toggleVoiceRecognition()" ion-button secondary round>{{ started ? 'Stop' : 'Send Message to Driver' }}</button>
+      </ion-card-content>
+    </ion-card>
+  
   <!-- <p>
     I heard {{ msg }}
   </p> -->

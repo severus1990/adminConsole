@@ -40,8 +40,12 @@ export class StatusPage {
   }
   driverMsg: string;
   indivMsgs: Array<any> = []
+  ordersInfo: any;
   constructor(private db: AngularFireDatabase, public navCtrl: NavController, public speech: SpeechService) { 
     this.orders1 = this.db.list('/itracks/orders');
+    this.db.list('/itracks/orders').valueChanges().subscribe((res) => {
+      this.ordersInfo = res;
+    });
     this.db.list('/itracks/messages').valueChanges().subscribe((res) => {
       this.messages = res;
       console.log(this.messages.length)
