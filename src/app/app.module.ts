@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { SpeechModule } from 'ngx-speech';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { StatusPage } from '../pages/status/status';
@@ -33,7 +33,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    SpeechModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,7 +49,8 @@ firebase.initializeApp(FIREBASE_CONFIG);
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NoteListService
+    NoteListService,
+    { provide: 'SPEECH_LANG', useValue: 'en-US' },
   ]
 })
 export class AppModule {}
